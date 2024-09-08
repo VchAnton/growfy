@@ -622,9 +622,31 @@ h6 {
   row-gap: 2rem;
 }
 
+@-webkit-keyframes scroll {
+  to {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
+}
+
+@keyframes scroll {
+  to {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
+}
+
 .clients {
   padding-top: 6.25rem;
   padding-bottom: 4.375rem;
+}
+
+.clients__container {
+  overflow: hidden;
+  -webkit-mask-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0)), color-stop(20%, rgb(0, 0, 0)), color-stop(80%, rgb(0, 0, 0)), to(rgba(0, 0, 0, 0)));
+  -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgb(0, 0, 0) 20%, rgb(0, 0, 0) 80%, rgba(0, 0, 0, 0));
+          mask-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0)), color-stop(20%, rgb(0, 0, 0)), color-stop(80%, rgb(0, 0, 0)), to(rgba(0, 0, 0, 0)));
+          mask-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgb(0, 0, 0) 20%, rgb(0, 0, 0) 80%, rgba(0, 0, 0, 0));
 }
 
 .clients__title {
@@ -638,19 +660,29 @@ h6 {
   margin-bottom: 2.75rem;
 }
 
+.clients__box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 4.6875rem;
+}
+
 .clients__items {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  gap: 0.9375rem;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  gap: 4.6875rem;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 auto;
+          flex: 0 1 auto;
   -ms-flex-pack: distribute;
       justify-content: space-around;
+  -webkit-animation: scroll 40s linear infinite;
+          animation: scroll 40s linear infinite;
 }
 
 .clients__items img {
-  max-width: 100%;
+  min-width: 100%;
 }
 
 .services {
@@ -1605,5 +1637,12 @@ h6 {
         -ms-flex-direction: column;
             flex-direction: column;
     row-gap: 0.9375rem;
+  }
+}
+
+@media (any-hover: hover) {
+  .clients__box:hover .clients__items {
+    -webkit-animation-play-state: paused;
+            animation-play-state: paused;
   }
 }
